@@ -1,1 +1,55 @@
 In this folder we put all the files for the problem 1.3 Advection-Diffusion
+
+
+In the following part we put explainations for the questions:
+
+1) What kind of derivative is implemented for advection with implicit Euler scheme
+
+He has written in advec function
+unp1[i]=tmp*(un[i]-un[i-1]);
+its in line 286
+
+Which means it is the backwards difference with respect to x
+tmp defined as
+tmp = dFac*(-1.*psp->V)/(psp->dx)
+or tmp = dFac * V/dx
+
+un - 
+unp1 -
+tmp = dFac*(-1.*psp->V)/(psp->dx)
+dFac -   
+
+
+
+
+2) Calculate numerically diffusive growth rate from simulations. Is your result in agreement with expected value?
+	- We run one a simulation for a set of values for the parameters. We get curves u(x) for each timestep. 
+	The growth rate is computed as:
+		ln(max(u[t+1])/max(u[t]))/dt
+	it is computed for all pairs of points, but the growth rate is computed as the mean of the last fiew values.
+	We do this for 5 different simulations
+
+
+3) In order to check if the growth rate is linked to the advection coefficient V, we run 5 different simulations each with different advection coefficient V but same other parameters. We find the following values for the growth rate for different V:
+v1 = 0.01; gr1 = -3.97
+v2 = 0.02; gr2 = -4.65
+v3 = 0.03; gr3 = -5.733
+v4 = 0.04; gr4 = -7.193
+v5 = 0.005; gr5 = -3.795
+
+The growth rate changes when V changes such that it decreases (becomes more negative) when the advection coefficient increases. This is also demonstrated in the homework part 3. For higher V we can see the curves travel more to the right.
+
+We run this using implicit Euler and Gaussian initial. We run without changing anything in the code, and in the code the implicit Euler scheme for advection is using backward difference. So we run our simulations using backward difference for advection
+
+
+
+4) There are stability criteria for diffusion and advection. We now check what happens when we choose different parameters that verify only one of these criteria.
+
+So the stability criteria are:
+	- diffusion: C*dt/dx^2 < 1/2
+	- advection: V*dt/dx < 1
+
+
+
+
+
